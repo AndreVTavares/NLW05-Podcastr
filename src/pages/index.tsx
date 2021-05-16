@@ -46,7 +46,7 @@ export default function Home({ allEpisodes, latestEpisodes }: HomeProps) {
               />
 
               <div className={styles.episodeDetails}>
-                <Link href={`episodes/${episode.id}`}>
+                <Link href={`/episodes/${episode.id}`}>
                   <a>{episode.title}</a>
                 </Link>
                 <p>{episode.members}</p>
@@ -67,12 +67,14 @@ export default function Home({ allEpisodes, latestEpisodes }: HomeProps) {
 
             <table cellSpacing={0}>
               <thead>
-                <th></th>
-                <th>Podcast</th>
-                <th>Integrantes</th>
-                <th>Data</th>
-                <th>Duração</th>
-                <th></th>
+                <tr>
+                  <th></th>
+                  <th>Podcast</th>
+                  <th>Integrantes</th>
+                  <th>Data</th>
+                  <th>Duração</th>
+                  <th></th>
+                </tr>
               </thead>
               <tbody>
                 {allEpisodes.map((episode) => (
@@ -87,9 +89,9 @@ export default function Home({ allEpisodes, latestEpisodes }: HomeProps) {
                       />
                     </td>
                     <td>
-                      <Link href={`episodes/${episode.id}`}>
-                        <a>{episode.title}</a>
-                      </Link>
+                    <Link href={`/episodes/${episode.id}`}>
+                      <a>{episode.title}</a>
+                    </Link>
                     </td>
                     <td>{episode.members}</td>
                     <td style={{ width: 100 }}>{episode.publishedAt}</td>
@@ -136,6 +138,6 @@ export const getStaticProps: GetStaticProps = async () => {
       latestEpisodes,
       allEpisodes
     },
-    revalidate: 60 * 60 * 8,
+    revalidate: 60 * 60 * 8, // 8 hours
   }
 }
